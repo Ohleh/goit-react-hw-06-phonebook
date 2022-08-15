@@ -3,8 +3,8 @@ import propTypes from 'prop-types';
 import { useSelector } from 'react-redux';
 
 const Filter = ({ value, onChange }) => {
-  const filter = useSelector(state => state.filter);
-  console.log(filter);
+  // const filter = useSelector(state => state.filter);
+  // console.log(filter);
 
   return (
     <>

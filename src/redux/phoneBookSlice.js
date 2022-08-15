@@ -33,4 +33,4 @@ export const phoneBookSlice = createSlice({
 export const { addContact, removeContact, findContact } =
   phoneBookSlice.actions; // експорт екшенів
 
-export default phoneBookSlice.reducer;
+// export default phoneBookSlice.reducer;

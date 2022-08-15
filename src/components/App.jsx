@@ -26,7 +26,7 @@ export const App = () => {
   });
 
   // const [filter, setFilter] = useState('');
-  const filter = useSelector(state => state.filter);
+  const filter = useSelector(state => state.phonebook.contacts.filter);
   console.log(filter);
 
   useEffect(() => {

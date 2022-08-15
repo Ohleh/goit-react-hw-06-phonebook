@@ -3,19 +3,21 @@ import ContactsRender from './ContactsRender';
 import propTypes from 'prop-types';
 import { useSelector } from 'react-redux';
 
-const Contacts = ({ contacts, detele }) => (
-  <div>
-    <ul>
-      {contacts.map(({ id, name, number }) => (
-        <ContactsRender
-          key={id}
-          contact={[id, name, number]}
-          deleteContact={() => detele(id)}
-        />
-      ))}
-    </ul>
-  </div>
-);
+const Contacts = ({ contacts, detele }) => {
+  return (
+    <div>
+      <ul>
+        {contacts.map(({ id, name, number }) => (
+          <ContactsRender
+            key={id}
+            contact={[id, name, number]}
+            deleteContact={() => detele(id)}
+          />
+        ))}
+      </ul>
+    </div>
+  );
+};
 
 Contacts.propTypes = {
   contacts: propTypes.arrayOf(

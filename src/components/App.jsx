@@ -2,7 +2,7 @@ import { useState, useEffect, useMemo } from 'react';
 import { nanoid } from 'nanoid';
 
 import { useDispatch } from 'react-redux';
-import { addContact, removeContact } from 'redux/phoneBookSlice';
+import { addContact, removeContact, findContact } from 'redux/phoneBookSlice';
 import { useSelector } from 'react-redux';
 
 import Contacts from './Contacts';
@@ -25,7 +25,9 @@ export const App = () => {
     );
   });
 
-  const [filter, setFilter] = useState('');
+  // const [filter, setFilter] = useState('');
+  const filter = useSelector(state => state.filter);
+  console.log(filter);
 
   useEffect(() => {
     window.localStorage.setItem('contactsStorage', JSON.stringify(contacts));
@@ -34,7 +36,7 @@ export const App = () => {
   const formSubmitHendler = dataFromForm => {
     setContacts(s => [...s, { ...dataFromForm, id: nanoid() }]);
     // console.log(contacts);
-    dispatch(addContact(dataFromForm));
+    // dispatch(addContact(dataFromForm));
   };
 
   const getVisibleContacts = useMemo(() => {
@@ -54,7 +56,8 @@ export const App = () => {
   };
 
   const changeFilter = e => {
-    setFilter(e.target.value);
+    // setFilter(e.target.value);
+    dispatch(findContact(e.target.value));
   };
 
   return (

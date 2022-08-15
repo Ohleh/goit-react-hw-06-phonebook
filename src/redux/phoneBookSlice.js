@@ -3,7 +3,7 @@ import { nanoid } from 'nanoid';
 
 const initialState = {
   contacts: {
-    items: [1, 4],
+    items: [],
     filter: '',
   },
 };
@@ -13,15 +13,20 @@ export const phoneBookSlice = createSlice({
   initialState,
   reducers: {
     addContact: (state, action) => {
-      state.contacts.items = [...(state.contacts.items + action.payload)];
+      state.contacts.items = [...state.contacts.items, action.payload];
       console.log(action);
     },
     removeContact: (state, action) => {
-      state.items = state.items.filter(
+      console.log(action);
+      state.contacts.items = state.contacts.items.filter(
         contact => contact.id !== action.payload
       );
     },
-    findContact: (state, action) => {},
+    findContact: (state, action) => {
+      state.contacts.filter = action.payload;
+      console.log(action);
+      console.log(state.contacts.filter);
+    },
   },
 });
 

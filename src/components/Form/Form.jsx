@@ -35,7 +35,6 @@ const Form = ({ checkContacts, onSubmitProp }) => {
       return alert(`${name} - is already exists`);
     }
 
-    // onSubmitProp({ name, number }); // вже передали а стор
     dispatch(addContact({ name, number, id: nanoid() }));
 
     setName('');

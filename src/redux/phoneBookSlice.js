@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { nanoid } from 'nanoid';
+// import { nanoid } from 'nanoid';
 
 const initialState = {
   contacts: {
@@ -19,11 +19,10 @@ export const phoneBookSlice = createSlice({
   reducers: {
     addContact: (state, action) => {
       state.contacts.items = [...state.contacts.items, action.payload];
-      console.log(state.contacts.items);
     },
-    removeContact: (state, action) => {
+    removeContact: (state, { payload: id }) => {
       state.contacts.items = state.contacts.items.filter(
-        contact => contact.id !== action.payload
+        contact => contact.id !== id
       );
     },
     findContact: (state, action) => {

@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 
-import { addContact, removeContact, findContact } from 'redux/phoneBookSlice';
+import { addContact } from 'redux/phoneBookSlice';
 
 import { nanoid } from 'nanoid';
 

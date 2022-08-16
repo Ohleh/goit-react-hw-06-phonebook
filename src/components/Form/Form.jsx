@@ -1,8 +1,13 @@
 import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+
+import { addContact, removeContact, findContact } from 'redux/phoneBookSlice';
 
 import { nanoid } from 'nanoid';
 
 const Form = ({ checkContacts, onSubmitProp }) => {
+  const dispatch = useDispatch();
+
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
 
@@ -30,7 +35,8 @@ const Form = ({ checkContacts, onSubmitProp }) => {
       return alert(`${name} - is already exists`);
     }
 
-    onSubmitProp({ name, number });
+    // onSubmitProp({ name, number }); // вже передали а стор
+    dispatch(addContact({ name, number, id: nanoid() }));
 
     setName('');
     setNumber('');

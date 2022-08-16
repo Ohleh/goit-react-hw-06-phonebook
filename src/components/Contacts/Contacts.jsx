@@ -11,7 +11,7 @@ const Contacts = ({ contacts, detele }) => {
           <ContactsRender
             key={id}
             contact={[id, name, number]}
-            deleteContact={() => detele(id)}
+            // deleteContact={() => detele(id)}
           />
         ))}
       </ul>
@@ -27,7 +27,7 @@ Contacts.propTypes = {
       number: propTypes.string.isRequired,
     })
   ),
-  detele: propTypes.func.isRequired,
+  // detele: propTypes.func.isRequired,
 };
 
 export default Contacts;

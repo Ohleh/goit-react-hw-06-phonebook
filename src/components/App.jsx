@@ -17,57 +17,54 @@ const contactsData = [
 ];
 
 export const App = () => {
-  const dispatch = useDispatch();
-
-  const [contacts, setContacts] = useState(() => {
-    return (
-      JSON.parse(window.localStorage.getItem('contactsStorage')) ?? contactsData
-    );
-  });
-
-  // const [filter, setFilter] = useState('');
   const filter = useSelector(state => state.phonebook.contacts.filter);
-  console.log(filter);
+  const contacts = useSelector(state => state.phonebook.contacts.items);
 
-  useEffect(() => {
-    window.localStorage.setItem('contactsStorage', JSON.stringify(contacts));
-  }, [contacts]);
+  const filtered = filter
+    ? contacts.filter(({ name }) =>
+        name.toLowerCase().includes(filter.toLowerCase())
+      )
+    : contacts;
 
-  const formSubmitHendler = dataFromForm => {
-    setContacts(s => [...s, { ...dataFromForm, id: nanoid() }]);
-    // console.log(contacts);
-    // dispatch(addContact(dataFromForm));
-  };
+  // // //
+  // const [contacts, setContacts] = useState(() => {
+  //   return (
+  //     JSON.parse(window.localStorage.getItem('contactsStorage')) ?? contactsData
+  //   );
+  // });
 
-  const getVisibleContacts = useMemo(() => {
-    if (!filter) return contacts;
-    else {
-      const normaliseLowerCase = filter.toLowerCase();
-      const visibleContacts = contacts.filter(contact =>
-        contact.name.toLowerCase().includes(normaliseLowerCase)
-      );
-      return visibleContacts;
-    }
-  }, [filter, contacts]);
+  // useEffect(() => {
+  //   window.localStorage.setItem('contactsStorage', JSON.stringify(contacts));
+  // }, [contacts]);
 
-  const deteleContact = id => {
-    setContacts(s => s.filter(contact => contact.id !== id));
-    // dispatch(removeContact(id));
-  };
+  //// const formSubmitHendler = dataFromForm => {
+  ////   setContacts(s => [...s, { ...dataFromForm, id: nanoid() }]);
+  //// };
 
-  const changeFilter = e => {
-    // setFilter(e.target.value);
-    dispatch(findContact(e.target.value));
-  };
+  // const getVisibleContacts = useMemo(() => {
+  //   if (!filter) return contacts;
+  //   else {
+  //     const normaliseLowerCase = filter.toLowerCase();
+  //     const visibleContacts = contacts.filter(contact =>
+  //       contact.name.toLowerCase().includes(normaliseLowerCase)
+  //     );
+  //     return visibleContacts;
+  //   }
+  // }, [filter, contacts]);
+  // // //
+
+  //// const deteleContact = id => {
+  ////   setContacts(s => s.filter(contact => contact.id !== id));
+  //// };
 
   return (
     <>
       <div>
         <h2>Phonebook</h2>
-        <Form onSubmitProp={formSubmitHendler} checkContacts={contacts} />
+        <Form checkContacts={contacts} />
         <h2>Contacts</h2>
-        <Filter value={filter} onChange={changeFilter} />
-        <Contacts contacts={getVisibleContacts} detele={deteleContact} />
+        <Filter value={filter} />
+        <Contacts contacts={filtered} />
       </div>
     </>
   );

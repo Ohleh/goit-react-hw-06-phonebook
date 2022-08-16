@@ -1,16 +1,13 @@
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { removeContact } from 'redux/phoneBookSlice';
 
 const ContactsRender = ({ deleteContact, contact: [id, name, number] }) => {
-  // const contact = useSelector(state => state.contacts);
-  // console.log(contact);
-
-  // const filter = useSelector(state => state.filter);
-  // console.log(filter);
+  const dispatch = useDispatch();
 
   return (
     <li key={id}>
       {name}: {number}
-      <button type="button" onClick={deleteContact}>
+      <button type="button" onClick={() => dispatch(removeContact(id))}>
         dell
       </button>
     </li>

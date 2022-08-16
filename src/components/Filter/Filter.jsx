@@ -1,17 +1,21 @@
 import React from 'react';
 import propTypes from 'prop-types';
-import { useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
+import { findContact } from 'redux/phoneBookSlice';
 
-const Filter = ({ value, onChange }) => {
-  // const filter = useSelector(state => state.filter);
-  // console.log(filter);
+const Filter = ({ value }) => {
+  const dispatch = useDispatch();
 
   return (
     <>
       <label>
         Find Contacts by name
         <br />
-        <input type="text" value={value} onChange={onChange} />
+        <input
+          type="text"
+          value={value}
+          onChange={e => dispatch(findContact(e.target.value))}
+        />
       </label>
     </>
   );
@@ -19,7 +23,7 @@ const Filter = ({ value, onChange }) => {
 
 Filter.propTypes = {
   // value: propTypes.string.isRequired,
-  onChange: propTypes.func.isRequired,
+  // onChange: propTypes.func.isRequired,
 };
 
 export default Filter;

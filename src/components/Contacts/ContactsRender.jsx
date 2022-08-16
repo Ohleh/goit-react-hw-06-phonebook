@@ -1,7 +1,7 @@
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { removeContact } from 'redux/phoneBookSlice';
 
-const ContactsRender = ({ deleteContact, contact: [id, name, number] }) => {
+const ContactsRender = ({ contact: [id, name, number] }) => {
   const dispatch = useDispatch();
 
   return (

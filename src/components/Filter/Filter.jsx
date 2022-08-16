@@ -1,5 +1,5 @@
 import React from 'react';
-import propTypes from 'prop-types';
+
 import { useDispatch } from 'react-redux';
 import { findContact } from 'redux/phoneBookSlice';
 
@@ -23,7 +23,6 @@ const Filter = ({ value }) => {
 
 Filter.propTypes = {
   // value: propTypes.string.isRequired,
-  // onChange: propTypes.func.isRequired,
 };
 
 export default Filter;

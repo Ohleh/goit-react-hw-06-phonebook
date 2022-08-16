@@ -1,18 +1,13 @@
 import React from 'react';
 import ContactsRender from './ContactsRender';
 import propTypes from 'prop-types';
-import { useSelector } from 'react-redux';
 
-const Contacts = ({ contacts, detele }) => {
+const Contacts = ({ contacts }) => {
   return (
     <div>
       <ul>
         {contacts.map(({ id, name, number }) => (
-          <ContactsRender
-            key={id}
-            contact={[id, name, number]}
-            // deleteContact={() => detele(id)}
-          />
+          <ContactsRender key={id} contact={[id, name, number]} />
         ))}
       </ul>
     </div>
@@ -27,7 +22,6 @@ Contacts.propTypes = {
       number: propTypes.string.isRequired,
     })
   ),
-  // detele: propTypes.func.isRequired,
 };
 
 export default Contacts;

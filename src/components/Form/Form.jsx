@@ -1,21 +1,21 @@
 import { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { addContact } from 'redux/phoneBookSlice';
 
 import { nanoid } from 'nanoid';
 
-const Form = ({ checkContacts, onSubmitProp }) => {
+const Form = ({ checkContacts }) => {
   const dispatch = useDispatch();
 
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
+  const contacts = useSelector(state => state.phonebook.contacts.items);
 
   const handleChange = ev => {
     switch (ev.target.name) {
       case 'name':
         setName(ev.target.value);
-
         break;
       case 'number':
         setNumber(ev.target.value);
@@ -28,7 +28,7 @@ const Form = ({ checkContacts, onSubmitProp }) => {
   const formSubmit = ev => {
     ev.preventDefault();
     if (
-      checkContacts.find(
+      contacts.find(
         contact => contact.name.toLowerCase() === name.toLowerCase()
       )
     ) {

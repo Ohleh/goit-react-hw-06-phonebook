@@ -16,16 +16,15 @@ export const phoneBookSlice = createSlice({
   name: 'phonebook',
   initialState,
   reducers: {
-    addContact: (state, action) => {
-      state.contacts.items = [...state.contacts.items, action.payload];
+    addContact: ({ contacts }, { payload }) => {
+      // state.contacts.items = [...state.contacts.items, action.payload];
+      contacts.items = [...contacts.items, payload];
     },
-    removeContact: (state, { payload: id }) => {
-      state.contacts.items = state.contacts.items.filter(
-        contact => contact.id !== id
-      );
+    removeContact: ({ contacts }, { payload: id }) => {
+      contacts.items = contacts.items.filter(contact => contact.id !== id);
     },
-    findContact: (state, action) => {
-      state.contacts.filter = action.payload;
+    findContact: ({ contacts }, { payload }) => {
+      contacts.filter = payload;
     },
   },
 });

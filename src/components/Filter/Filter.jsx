@@ -3,7 +3,7 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 import { findContact } from 'redux/phoneBookSlice';
 
-const Filter = ({ value }) => {
+const Filter = () => {
   const dispatch = useDispatch();
 
   return (
@@ -13,7 +13,7 @@ const Filter = ({ value }) => {
         <br />
         <input
           type="text"
-          value={value}
+          // value={value}
           onChange={e => dispatch(findContact(e.target.value))}
         />
       </label>
@@ -21,8 +21,8 @@ const Filter = ({ value }) => {
   );
 };
 
-Filter.propTypes = {
-  // value: propTypes.string.isRequired,
-};
+// Filter.propTypes = {
+//   value: propTypes.string.isRequired,
+// };
 
 export default Filter;

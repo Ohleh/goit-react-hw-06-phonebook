@@ -1,12 +1,22 @@
 import React from 'react';
 import ContactsRender from './ContactsRender';
 import propTypes from 'prop-types';
+import { useSelector } from 'react-redux';
 
-const Contacts = ({ contacts }) => {
+const Contacts = () => {
+  const filter = useSelector(state => state.phonebook.contacts.filter);
+  const contacts = useSelector(state => state.phonebook.contacts.items);
+
+  const filteredContacts = filter
+    ? contacts.filter(({ name }) =>
+        name.toLowerCase().includes(filter.toLowerCase())
+      )
+    : contacts;
+
   return (
     <div>
       <ul>
-        {contacts.map(({ id, name, number }) => (
+        {filteredContacts.map(({ id, name, number }) => (
           <ContactsRender key={id} contact={[id, name, number]} />
         ))}
       </ul>
